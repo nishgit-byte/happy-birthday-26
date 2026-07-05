@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A romantic birthday surprise website for Vanshika." />
+  <title>Happy Birthday, Vanshika</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="locked">
+  <a class="skip-link" href="#home">Skip to gift</a>
+
+  <!-- Countdown and password gate. The website content stays hidden until this gate is passed. -->
+  <section id="lockScreen" class="lock-screen" aria-label="Birthday countdown lock screen">
+    <div class="lock-aurora" aria-hidden="true"></div>
+    <div class="lock-dots" aria-hidden="true"></div>
+
+    <div class="countdown-card" id="countdownCard">
+      <p class="lock-kicker">For Vanshika</p>
+      <h1 class="countdown-heading">Birthday magic unlocks in</h1>
+
+      <div class="countdown-grid" id="countdownDisplay" aria-live="polite">
+        <div class="time-box">
+          <span id="days">00</span>
+          <small>Days</small>
+        </div>
+        <div class="time-box">
+          <span id="hours">00</span>
+          <small>Hours</small>
+        </div>
+        <div class="time-box">
+          <span id="minutes">00</span>
+          <small>Minutes</small>
+        </div>
+        <div class="time-box">
+          <span id="seconds">00</span>
+          <small>Seconds</small>
+        </div>
+      </div>
+
+      <p class="waiting-line">Something special is waiting for you...</p>
+    </div>
+
+    <div id="passwordGate" class="password-gate" hidden>
+      <div class="password-card" role="dialog" aria-modal="true" aria-labelledby="passwordTitle">
+        <p class="tiny-label">The birthday door is ready</p>
+        <h2 id="passwordTitle">Who does nishit love the most</h2>
+        <p class="password-hint">Hint: Dont overthink it</p>
+
+        <form id="passwordForm" class="password-form">
+          <label class="sr-only" for="passwordInput">Password answer</label>
+          <input id="passwordInput" type="text" autocomplete="off" placeholder="Type your answer here" />
+          <button type="submit" class="primary-btn">Unlock my gift</button>
+        </form>
+
+        <p id="passwordError" class="form-message" aria-live="assertive"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Heart-to-pink expansion transition. Triggered by JavaScript after correct password. -->
+  <div id="unlockTransition" class="unlock-transition" hidden aria-hidden="true">
+    <div class="pink-wave"></div>
+    <div class="transition-heart">&hearts;</div>
+  </div>
+
+  <!-- Floating navigation is revealed only after unlock. -->
+  <nav id="floatingNav" class="floating-nav" hidden aria-label="Gift sections">
+    <a href="#home" aria-label="Home">Home</a>
+    <a href="#hunt" aria-label="Treasure hunt">Hunt</a>
+    <a href="#memories" aria-label="Memories">Memories</a>
+    <a href="#letters" aria-label="Open when letters">Letters</a>
+    <a href="#love" aria-label="Love generator">Love</a>
+    <a href="#final" aria-label="Final gift">Final</a>
+  </nav>
+
+  <main id="siteContent" class="site-content" hidden>
+    <!-- SECTION 2: HOME -->
+    <section id="home" class="gift-section home-section">
+      <div class="ambient-hearts" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="section-inner hero-inner">
+        <p class="section-kicker">A tiny universe made for you</p>
+        <h1 class="hero-title">
+          HAPPIEST BIRTHDAY MY
+          <span class="nickname-shell" aria-live="polite">
+            <span id="nicknameText" class="nickname-text">baby</span>
+          </span>
+        </h1>
+        <p class="hero-subtitle" id="heroSubtitle"></p>
+
+        <button id="birthdayEnvelope" class="birthday-envelope" type="button" aria-label="Open Nishit's birthday letter">
+          <svg class="envelope-art" viewBox="0 0 560 360" role="img" aria-label="A pink love letter envelope" focusable="false">
+            <defs>
+              <linearGradient id="paperGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#fffdf8" />
+                <stop offset="100%" stop-color="#fff4df" />
+              </linearGradient>
+              <linearGradient id="envelopeBackGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ffd7e7" />
+                <stop offset="100%" stop-color="#ff9fc5" />
+              </linearGradient>
+              <linearGradient id="envelopeFlapGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ff8fbd" />
+                <stop offset="55%" stop-color="#ffc8de" />
+                <stop offset="100%" stop-color="#ffe8f1" />
+              </linearGradient>
+              <linearGradient id="envelopePocketGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ffcfe1" />
+                <stop offset="100%" stop-color="#ffaad0" />
+              </linearGradient>
+              <linearGradient id="sealGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ff4f9b" />
+                <stop offset="100%" stop-color="#b76cff" />
+              </linearGradient>
+            </defs>
+
+            <ellipse class="envelope-svg-shadow" cx="280" cy="323" rx="178" ry="23" />
+            <path class="envelope-svg-back" d="M92 122 Q92 106 112 106 H448 Q468 106 468 122 V294 Q468 314 448 314 H112 Q92 314 92 294 Z" />
+
+            <g class="envelope-svg-letter">
+              <rect x="155" y="62" width="250" height="158" rx="26" />
+              <path d="M190 118 H370" />
+              <path d="M205 152 H355" />
+              <text x="280" y="102" text-anchor="middle">Open me</text>
+            </g>
+
+            <path class="envelope-svg-left-flap" d="M92 116 L280 226 L92 304 Z" />
+            <path class="envelope-svg-right-flap" d="M468 116 L280 226 L468 304 Z" />
+            <path class="envelope-svg-pocket" d="M92 132 L280 250 L468 132 V294 Q468 314 448 314 H112 Q92 314 92 294 Z" />
+            <path class="envelope-svg-top-flap" d="M92 112 L280 238 L468 112 Z" />
+            <circle class="envelope-svg-seal" cx="280" cy="220" r="38" />
+            <text class="envelope-svg-heart" x="280" y="234" text-anchor="middle">♥</text>
+          </svg>
+        </button>
+        <p class="envelope-caption">Tap the envelope for your first gift.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TREASURE HUNT -->
+    <section id="hunt" class="gift-section treasure-section">
+      <div class="section-inner wide-inner">
+        <p class="section-kicker">Little clues from us</p>
+        <h2 class="section-title">Treasure Hunt</h2>
+        <p class="section-intro">Answer each memory to unlock the next little piece of the path. Solve all five clues to earn the chest password.</p>
+
+        <div id="treasureChestPanel" class="treasure-chest-panel is-locked" aria-live="polite">
+          <div class="treasure-chest-scene">
+            <button id="treasureChest" class="treasure-chest" type="button" aria-label="Locked treasure chest" aria-expanded="false">
+              <span class="chest-glow" aria-hidden="true"></span>
+              <span class="chest-treasure" aria-hidden="true">
+                <span>♥</span>
+                <span>✦</span>
+                <span>💎</span>
+                <span>✦</span>
+              </span>
+              <span class="chest-lid" aria-hidden="true">
+                <span class="chest-lid-face"></span>
+                <span class="chest-lid-band"></span>
+              </span>
+              <span class="chest-box" aria-hidden="true">
+                <span class="chest-shine"></span>
+                <span class="chest-band chest-band-left"></span>
+                <span class="chest-band chest-band-right"></span>
+                <span class="chest-lock">♥</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="treasure-chest-card">
+            <p class="tiny-label">Final chest</p>
+            <h3 id="treasureChestTitle">The treasure chest is locked</h3>
+            <p id="treasureChestHint">Solve all five questions correctly to reveal the password.</p>
+
+            <div id="treasurePasswordReveal" class="treasure-password-reveal" hidden>
+              <span>You solved every clue. Your chest password is</span>
+              <strong id="treasurePasswordText">ILMGF</strong>
+              <small id="treasurePasswordMeaning">I love My Girl Friend</small>
+            </div>
+
+            <form id="treasureChestForm" class="chest-form">
+              <label class="sr-only" for="treasureChestPassword">Treasure chest password</label>
+              <input id="treasureChestPassword" type="text" autocomplete="off" placeholder="Password appears after the hunt" disabled />
+              <button id="treasureChestButton" class="primary-btn" type="submit" disabled>Open chest</button>
+            </form>
+            <p id="treasureChestStatus" class="card-status" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div id="treasureBoard" class="treasure-board" aria-live="polite"></div>
+        <p id="treasureComplete" class="completion-message" hidden></p>
+      </div>
+    </section>
+
+    <!-- SECTION 4: TIMELINE / MEMORIES -->
+    <section id="memories" class="gift-section memories-section">
+      <div class="section-inner wide-inner">
+        <p class="section-kicker">Our scrapbook sky</p>
+        <h2 class="section-title">Memories on a Clothesline</h2>
+        <p class="section-intro">Click the stack and watch every memory find its place.</p>
+
+        <div class="memory-progress" id="memoryProgress">Memory 0 of 0</div>
+        <div id="memoryWall" class="memory-wall" aria-live="polite"></div>
+
+        <div class="polaroid-stack-wrap">
+          <button id="polaroidStack" class="polaroid-stack" type="button" aria-label="Add the next memory to the clothesline">
+            <span class="stack-card stack-card-one"></span>
+            <span class="stack-card stack-card-two"></span>
+            <span class="stack-card stack-card-three"></span>
+            <span class="stack-label">Click for a memory</span>
+          </button>
+          <p id="memoryComplete" class="completion-message" hidden>Every picture, one more reason I am grateful for us.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: OPEN WHEN LETTERS -->
+    <section id="letters" class="gift-section letters-section">
+      <div class="ambient-stars" aria-hidden="true"></div>
+      <div class="section-inner wide-inner">
+        <p class="section-kicker">Tiny paper hugs</p>
+        <h2 class="section-title">Open when...</h2>
+        <p class="section-intro">Four little letters for four little moments.</p>
+
+        <div id="openWhenGrid" class="open-when-grid"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: LOVE GENERATOR -->
+    <section id="love" class="gift-section love-section">
+      <div class="section-inner love-inner">
+        <p class="section-kicker">One answer is never enough</p>
+        <h2 class="love-question">I love you for...?</h2>
+        <button id="loveButton" class="primary-btn love-btn" type="button">Tell me one reason</button>
+        <p id="loveOutput" class="love-output" aria-live="polite">Click the button, my love.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 7: FINAL PAGE -->
+    <section id="final" class="gift-section final-section">
+      <div class="section-inner final-inner">
+        <p class="section-kicker">The last little surprise</p>
+        <h2 class="section-title">One last thing, my love...</h2>
+
+        <div class="video-card" id="videoCard">
+          <video id="finalVideo" controls preload="metadata" playsinline>
+            Your browser does not support the video tag.
+          </video>
+          <button id="videoPlayCard" class="video-play-card" type="button" aria-label="Play Nishit's video note">
+            <span class="play-circle">&#9658;</span>
+            <span>Play your video note</span>
+          </button>
+          <p id="videoFallback" class="video-fallback" hidden>Place your final video at the configured path and this player will appear here.</p>
+        </div>
+
+        <article class="promise-card">
+          <h3>Future date promise</h3>
+          <p id="futurePromise"></p>
+        </article>
+
+        <p id="finalLine" class="final-line"></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared modal for letters, image previews, and unlock message. -->
+  <div id="modalBackdrop" class="modal-backdrop" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="modalClose" class="modal-close" type="button" aria-label="Close popup">&times;</button>
+      <div id="modalContent" class="modal-content">
+        <h2 id="modalTitle"></h2>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
